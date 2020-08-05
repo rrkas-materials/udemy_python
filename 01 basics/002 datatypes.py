@@ -10,8 +10,14 @@ mydict ={
     "c":4,
     "d":5
 }
-print(mydict.keys())
-print(sum(mydict.values())/len(mydict))
+# print(mydict.keys())
+# print(sum(mydict.values())/len(mydict))
+
+myTuple = (1,4,5)
+# print(myTuple)
+
+
+
 
 '''
 listMethods = dir(list)
@@ -25,12 +31,16 @@ builtInFunctionsAndMethodsAndTypes = dir(__builtins__)
 
 '''
 SIMPLE DATATYPES
-int
-str
-float
+int         1
+str         "1"
+float       1.0
 
 COMPOUND DATATYPES
-list
-dict
+list        []
+dict        {}
+tuple       ()
 
+
+list vs tuple
+list: mutable       tuple: immutable
 '''
