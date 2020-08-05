@@ -22,6 +22,8 @@ age = float(input("Enter age: "))
 message = 'Hello %s %s. You\'re %s years old!' % (name, surname, age)
 #or
 message = f'Hello {name} {surname}. You\'re {age} years old!'
+#or
+message = 'Hello {} {}. You\'re {} years old'.format(name, surname, age)
 print(message)
 
 
