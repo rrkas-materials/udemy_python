@@ -1,0 +1,37 @@
+pip install flask
+
+case 1:     the same script is executed:
+            __name__ will be "__main__"
+
+case 2:     the script is imported:
+            __name__ will be "main"
+
+------routing----------------------------------
+
+a route can return:
+    1. string   : body of html doc
+    2. template :
+        steps:
+            a. create "templates" sub-directory in project
+            b. add files <file-name>.html
+            c. refer the file names in py script directly (Eg: 'home.html')
+
+----------navigation---------------------------
+
+ - class names will be referred in py code
+ - url_for('<function-name>') will trigger the functions in py code
+
+functions are renamed to be <route>_builder to avoid conflict with file name or class name
+
+layout.html is base template
+home.html is child template which extends the base to fill the customization
+
+
+----------doubt(s)---------------------------------
+[ ] import flask                import flask.Flask              from flask import Flask
+
+
+
+
+[X] what is __name__
+    __name__ is a built-in variable which evaluates to the name of the current module
