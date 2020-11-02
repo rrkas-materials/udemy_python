@@ -1,0 +1,43 @@
+hosts file
+
+in windows:
+    C:\Windows\System32\drivers\etc\hosts
+
+in linux/ Mac:
+    /etc/hosts
+
+
+automatically start code in background:
+    Windows:
+        1.  open python location, locate pythonw.exe
+        2.  change extension of "main.py" to "main.pyw"
+        3.  double click file to execute
+        4.  check task manager -> processes : pythonw.exe
+        5.  search for "Task Scheduler" in windows button search
+        6.  create task
+            General:
+                name                    : Website Blocker
+                [X] Run with highest privileges
+                configure for           : Windows 7
+            Triggers:
+                New:
+                    Begin the task      : at startup
+            Actions:
+                New:
+                    Actions             : Start a program
+                    Program             : <Path of main.pyw>
+            Conditions:
+                [ ] Start the task only if computer is on AC power
+            OK
+    Linux/ Mac:
+        1.  open terminal in main.py directory
+        2.  sudo nano /etc/hosts
+        3.  [ctrl + x] to exit
+        4.  sudo python3 main.py #to check file again
+        5.  sudo crontab -e
+        6.  choose editor   |   to change later, run select-editor
+        7.  add line: @reboot python3 /home/rohnak/PythonProjects/04 app3 - website blocker/main.py
+        8.  [ctrl + x]
+        9.  y
+        10. Enter
+
