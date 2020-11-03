@@ -73,14 +73,23 @@ home.html is child template which extends the base to fill the customization
     $ git commit -m "..."
     $ heroku git:remote --app rrka1webapp
     $ git push heroku master
+NOTE: error: got error in this git, so copied whole app4 in another place and repeated steps 7 & 15
 NOTE: error: pkg-requirements==0.0.0 generated error. removed the line from requirements.txt
 16. DONE
 
+---------maintaining the live website---------------
+
+1.  make necessary changes
+2.  git add .
+3.  git commit -m "..."
+4.  git push heroku master
+
+
 
 ----------doubt(s)---------------------------------
-[ ] import flask                import flask.Flask              from flask import Flask
-
-
+[X] import flask                import flask.Flask              from flask import Flask
+    flask: package              flask: package                  flask:  package
+                                Flask: module                   Flask:  non modules (classes, objects, methods)
 
 
 [X] what is __name__
