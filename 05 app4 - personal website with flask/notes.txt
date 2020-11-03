@@ -26,12 +26,54 @@ functions are renamed to be <route>_builder to avoid conflict with file name or 
 layout.html is base template
 home.html is child template which extends the base to fill the customization
 
-----------publish/ deploy web app-------------
+----------publish/ deploy web app to heroku-------------
 
 1.  create new heroku account at www.heroku.com
-2.  in project terminal (pycharm in my case), pip install virtualenv
-3.  if venv is not found, sudo apt-get install python3-venv
-    python3 -m venv virtual
+2.  in project terminal (pycharm in my case),
+    $ pip install virtualenv
+3.  if venv is not found,
+    $ sudo apt-get install python3-venv
+    $ python3 -m venv virtual
+4.  $ virtual/bin/pip3 install flask
+5.  $ virtual/bin/python3 "05 app4 - personal website with flask/main.py"
+    if error 98: address already in use:
+    $ ps -fA | grep python
+    501 81211 12368   0  10:11PM ttys000    0:03.12
+    python -m SimpleHTTPServer
+    $ kill 81211
+6.  in global terminal, in laptop
+    $ sudo snap install --classic heroku
+
+    in local terminal (in my case pycharm internal terminal), in project root,
+7.  $ heroku login
+    press any key except q to log in
+8.  $ heroku create rrka1webapp
+    https://rrka1webapp.herokuapp.com/ | https://git.heroku.com/rrka1webapp.git
+9.  $ heroku apps
+    to see all apps
+10. $ virtual/bin/pip3 install gunicorn
+11. $ virtual/bin/pip3 freeze
+    click==7.1.2
+    Flask==1.1.2
+    gunicorn==20.0.4
+    itsdangerous==1.1.0
+    Jinja2==2.11.2
+    MarkupSafe==1.1.1
+    pkg-resources==0.0.0
+    Werkzeug==1.0.1
+12. $ virtual/bin/pip3 freeze > "05 app4 - personal website with flask/requirements.txt"
+13. create Procfile (no extension) in app directory
+    write:
+        web: gunicorn main:app
+    app is the app instance in the main.py in the same level directory as the Procfile
+14. create runtime.txt in app directory (this step is optional now)
+    write:
+        python-3.x.x        (fill the x)
+15. $ git init
+    $ git add .
+    $ git commit -m "..."
+    $ heroku git:remote --app rrka1webapp
+
 
 
 ----------doubt(s)---------------------------------
