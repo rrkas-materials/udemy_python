@@ -59,7 +59,6 @@ home.html is child template which extends the base to fill the customization
     itsdangerous==1.1.0
     Jinja2==2.11.2
     MarkupSafe==1.1.1
-    pkg-resources==0.0.0
     Werkzeug==1.0.1
 12. $ virtual/bin/pip3 freeze > "05 app4 - personal website with flask/requirements.txt"
 13. create Procfile (no extension) in app directory
@@ -73,7 +72,9 @@ home.html is child template which extends the base to fill the customization
     $ git add .
     $ git commit -m "..."
     $ heroku git:remote --app rrka1webapp
-
+    $ git push heroku master
+NOTE: error: pkg-requirements==0.0.0 generated error. removed the line from requirements.txt
+16. DONE
 
 
 ----------doubt(s)---------------------------------
