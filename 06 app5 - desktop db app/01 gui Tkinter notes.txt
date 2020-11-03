@@ -1,0 +1,29 @@
+library used for GUI: Tkinter (python 2.x.x) or tkinter (python 3.x.x)
+
+if library is not found:
+    $ sudo apt-get install python3-tk
+
+--------Window (Tk)----------------------------------------------------------------------
+
+
+------Button-----------------------------------------------------------------------------
+Init signature: tkinter.Button(master=None, cnf={}, **kw)
+Docstring:      Button widget.
+Init docstring:
+Construct a button widget with the parent MASTER.
+
+STANDARD OPTIONS
+
+    activebackground, activeforeground, anchor,
+    background, bitmap, borderwidth, cursor,
+    disabledforeground, font, foreground
+    highlightbackground, highlightcolor,
+    highlightthickness, image, justify,
+    padx, pady, relief, repeatdelay,
+    repeatinterval, takefocus, text,
+    textvariable, underline, wraplength
+
+WIDGET-SPECIFIC OPTIONS
+
+    command, compound, default, height,
+    overrelief, state, width
