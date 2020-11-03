@@ -9,7 +9,8 @@ A multi-layered geographical map showing the volcanoes with popup details.
 
 
 ## *App3 - Website Blocker*
-Blocks the websites to open by redirecting it to localhost(127.0.0.1).
+Blocks the websites to open by redirecting it to localhost (127.0.0.1).
 
 
 ## *App4 - Personal Website with Flask*
+Simple website with 2 web-pages, and CSS styling.

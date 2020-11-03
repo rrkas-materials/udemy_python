@@ -1,7 +1,5 @@
-# importing Flask
 from flask import Flask
-# for rendering html templates
-from flask import render_template
+from flask import render_template  # for rendering html templates
 
 # creates the app
 app = Flask(__name__)

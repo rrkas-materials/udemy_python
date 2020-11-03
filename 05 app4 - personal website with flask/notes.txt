@@ -26,6 +26,13 @@ functions are renamed to be <route>_builder to avoid conflict with file name or 
 layout.html is base template
 home.html is child template which extends the base to fill the customization
 
+----------publish/ deploy web app-------------
+
+1.  create new heroku account at www.heroku.com
+2.  in project terminal (pycharm in my case), pip install virtualenv
+3.  if venv is not found, sudo apt-get install python3-venv
+    python3 -m venv virtual
+
 
 ----------doubt(s)---------------------------------
 [ ] import flask                import flask.Flask              from flask import Flask
@@ -35,3 +42,7 @@ home.html is child template which extends the base to fill the customization
 
 [X] what is __name__
     __name__ is a built-in variable which evaluates to the name of the current module
+
+
+
+[ ] url_for()
