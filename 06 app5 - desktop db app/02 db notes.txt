@@ -1,0 +1,128 @@
+
+DBs python can interact with:
+    MySQL
+    PostgreSQL
+    Oracle
+    SQlite
+    etc...
+
+
+----------------------SQlite-------------------------------------------------------------------------------------
+Not client server db
+based on files (.db files)
+used for less data
+no need to install it in every machine, transfer of program will be sufficient
+portable, popular
+---------------
+Library name: sqlite3
+
+interacting with db consists of:
+    1.  connect to db
+    2.  create a cursor object
+    3.  write a sql query
+    4.  commit changes to db
+    5.  close connection
+
+SQL datatypes           Python resemblances
+    TEXT                str
+    INTEGER             int
+    REAL                float
+----------code example--------------------------
+
+import sqlite3
+
+
+def create_table():
+    conn = sqlite3.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER, price REAL)')
+    conn.commit()
+    conn.close()
+
+
+def insert(item, qty, price):
+    conn = sqlite3.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('INSERT INTO store VALUES (?, ?, ?)', (item, qty, price))
+    conn.commit()
+    conn.close()
+
+
+def update_quantity(item, qty, price):
+    conn = sqlite3.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('UPDATE store SET quantity=?, price=? WHERE item=?', (qty, price, item))
+    conn.commit()
+    conn.close()
+
+
+def delete(item):
+    conn = sqlite3.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('DELETE FROM store WHERE item=?', (item,))
+    conn.commit()
+    conn.close()
+
+
+def view():
+    conn = sqlite3.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM store')
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+
+if __name__ == "__main__":
+    # create_table()
+    # insert('Rubber',1,25)
+    # insert('Steel', 1, 25)
+    # insert('Wood', 1, 25)
+    # insert('Copper', 1, 25)
+    # print(view())
+    update_quantity('Coffee Cup', 5, 15)
+    # print(view())
+    # delete('Steel')
+    print(view())
+
+
+
+
+
+
+---------------------PostgreSQL----------------------------------------------------------------------------------------
+needs to be installed where its used to operate on it
+used in web apps
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
+-------------------
+Library name: psycopg2
+
+--------installing postgreSQL in UBUNTU--------------
+installation method:
+$ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+$ sudo apt-get update
+$ sudo apt-get -y install postgresql
+
+configuring superuser:
+$ sudo -u postgres psql postgres
+# \password postgres
+Enter a password
+# \q
+
+to access superuser:
+$ sudo -u postgres psql postgres
+
+port: 5432
+
+------installing psycopg2 (worked for UBUNTU)------------------
+$ pip install psycopg2
+if error, do the next one, otherwise NOT.
+    $ pip install psycopg2-binary
+
+------NOTE----------------------------------
+1.  Default database in postgres:   postgres
+2.  Creating new db:
+    $
+
+

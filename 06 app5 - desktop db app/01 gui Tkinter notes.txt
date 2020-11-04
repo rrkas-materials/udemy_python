@@ -3,27 +3,26 @@ library used for GUI: Tkinter (python 2.x.x) or tkinter (python 3.x.x)
 if library is not found:
     $ sudo apt-get install python3-tk
 
---------Window (Tk)----------------------------------------------------------------------
+----------------------Example-----------------------------
+from tkinter import *
+
+window = Tk()  # start of gui part
 
 
-------Button-----------------------------------------------------------------------------
-Init signature: tkinter.Button(master=None, cnf={}, **kw)
-Docstring:      Button widget.
-Init docstring:
-Construct a button widget with the parent MASTER.
+def km_to_miles():
+    km = float(e1_val.get())
+    miles = km * 1.6
+    t1.insert(END, miles)
 
-STANDARD OPTIONS
 
-    activebackground, activeforeground, anchor,
-    background, bitmap, borderwidth, cursor,
-    disabledforeground, font, foreground
-    highlightbackground, highlightcolor,
-    highlightthickness, image, justify,
-    padx, pady, relief, repeatdelay,
-    repeatinterval, takefocus, text,
-    textvariable, underline, wraplength
+b1 = Button(window, text="Execute", command=km_to_miles)
+b1.grid(row=0, column=0, rowspan=2)
 
-WIDGET-SPECIFIC OPTIONS
+e1_val = StringVar()
+e1 = Entry(window, textvariable=e1_val)
+e1.grid(row=0, column=1)
 
-    command, compound, default, height,
-    overrelief, state, width
+t1 = Text(window, height=1, width=20)
+t1.grid(row=0, column=2)
+
+window.mainloop()  # ends of gui part

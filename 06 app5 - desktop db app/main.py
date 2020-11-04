@@ -1,13 +1,55 @@
-from tkinter import *
+import psycopg2
 
-window = Tk()  # start of gui part
 
-b1 = Button(window, text="Execute")
-b1.grid(row=0, column=0, rowspan=2)
+def create_table():
+    conn = psycopg2.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER, price REAL)')
+    conn.commit()
+    conn.close()
 
-e1 = Entry(window)
-e1.grid(row=0, column=1)
 
-t1 = Text(window, height=1, width=20)
-t1.grid(row=0, column=2)
-window.mainloop()  # ends of gui part
+def insert(item, qty, price):
+    conn = psycopg2.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('INSERT INTO store VALUES (?, ?, ?)', (item, qty, price))
+    conn.commit()
+    conn.close()
+
+
+def update_quantity(item, qty, price):
+    conn = psycopg2.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('UPDATE store SET quantity=?, price=? WHERE item=?', (qty, price, item))
+    conn.commit()
+    conn.close()
+
+
+def delete(item):
+    conn = psycopg2.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('DELETE FROM store WHERE item=?', (item,))
+    conn.commit()
+    conn.close()
+
+
+def view():
+    conn = psycopg2.connect('lite.db')
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM store')
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+
+if __name__ == "__main__":
+    # create_table()
+    # insert('Rubber',1,25)
+    # insert('Steel', 1, 25)
+    # insert('Wood', 1, 25)
+    # insert('Copper', 1, 25)
+    # print(view())
+    update_quantity('Coffee Cup', 5, 15)
+    # print(view())
+    # delete('Steel')
+    print(view())
