@@ -1,62 +1,71 @@
-import psycopg2
+from tkinter import *
+import db
 
-connect_string = 'dbname=postgres user=rohnak password=rohnak host=localhost port=5432'
+window = Tk()
+window.winfo_toplevel().title('Book List Recorder')
 
+label_title = Label(master=window, text='Title')
+label_title.grid(row=0, column=0)
+title_text = StringVar()
+entry_title = Entry(window, textvariable=title_text)
+entry_title.grid(row=0, column=1)
 
-def create_table():
-    conn = psycopg2.connect(connect_string)
-    cur = conn.cursor()
-    cur.execute('CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER, price REAL)')
-    conn.commit()
-    conn.close()
+label_author = Label(window, text='Author')
+label_author.grid(row=0, column=2)
+author_text = StringVar()
+entry_title = Entry(window, textvariable=author_text)
+entry_title.grid(row=0, column=3)
 
+label_year = Label(window, text='Year')
+label_year.grid(row=1, column=0)
+year_text = StringVar()
+entry_title = Entry(window, textvariable=year_text)
+entry_title.grid(row=1, column=1)
 
-def insert(item, qty, price):
-    conn = psycopg2.connect(connect_string)
-    cur = conn.cursor()
-    cur.execute('INSERT INTO store (item, quantity, price) VALUES(%s, %s, %s)', (item, qty, price))  # better tha later option
-    # OR
-    # cur.execute("INSERT INTO store (item, quantity, price) VALUES('%s', %s, %s)" % (item, qty, price))
-    # note: postgres cannot accept "value", it only accepts 'value'
-    conn.commit()
-    conn.close()
+label_isbn = Label(window, text='ISBN')
+label_isbn.grid(row=1, column=2)
+isbn_text = StringVar()
+entry_title = Entry(window, textvariable=isbn_text)
+entry_title.grid(row=1, column=3)
 
-
-def update_quantity(item, qty, price):
-    conn = psycopg2.connect(connect_string)
-    cur = conn.cursor()
-    cur.execute('UPDATE store SET quantity=%s, price=%s WHERE item=%s', (qty, price, item))
-    conn.commit()
-    conn.close()
-
-
-def delete(item):
-    conn = psycopg2.connect(connect_string)
-    cur = conn.cursor()
-    cur.execute('DELETE FROM store WHERE item=%s', (item,))
-    conn.commit()
-    conn.close()
+scrollbar = Scrollbar(window)
+scrollbar.grid(row=2, column=2, rowspan=6)
+listbox = Listbox(window, height=6, width=35)
+listbox.grid(row=2, column=0, columnspan=2, rowspan=6)
+listbox.configure(yscrollcommand=scrollbar.set)
+scrollbar.configure(command=listbox.yview)
 
 
-def view():
-    conn = psycopg2.connect(connect_string)
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM store')
-    rows = cur.fetchall()
-    conn.close()
-    for r in rows:
-        print("{:10s}\t|\t{:3d}\t|\t{:7.2f}".format(r[0], r[1], r[2]))
-    print('-------------------------------')
+def refresh():
+    title_text.set('')
+    author_text.set('')
+    year_text.set('')
+    isbn_text.set('')
+    listbox.delete(0,END)
 
+
+def view_command():
+    refresh()
+    for row in db.view():
+        listbox.insert(END,'{:3d} | {:6s} | {:6s} | {:4d} | {:10d}'.format(row[0],row[1],row[2],row[3],row[4]))
+
+btn_viewall = Button(window, text='View All', width=12,command=view_command)
+btn_viewall.grid(row=2, column=3)
+
+btn_search = Button(window, text='Search', width=12)
+btn_search.grid(row=3, column=3)
+
+btn_add = Button(window, text='Add', width=12)
+btn_add.grid(row=4, column=3)
+
+btn_update = Button(window, text='Update', width=12)
+btn_update.grid(row=5, column=3)
+
+btn_delete = Button(window, text='Delete', width=12)
+btn_delete.grid(row=6, column=3)
+
+btn_close = Button(window, text='Close', width=12)
+btn_close.grid(row=7, column=3)
 
 if __name__ == "__main__":
-    create_table()
-    insert('Rubber', 1, 25)
-    insert('Steel', 1, 20)
-    insert('Wood', 1, 15)
-    insert('Plastic', 2, 12)
-    view()
-    update_quantity('Wood', 5, 15)
-    view()
-    delete('Steel')
-    view()
+    window.mainloop()
