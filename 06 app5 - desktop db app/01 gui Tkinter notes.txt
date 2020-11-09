@@ -26,3 +26,12 @@ t1 = Text(window, height=1, width=20)
 t1.grid(row=0, column=2)
 
 window.mainloop()  # ends of gui part
+
+
+
+-----------STAND ALONE APPLICATION PROGRAM------------------
+
+$ pip install pyinstaller
+$ pyinstaller --onefile --windowed main.py      #windows
+
+linux still under development
