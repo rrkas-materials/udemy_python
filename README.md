@@ -14,3 +14,6 @@ Blocks the websites to open by redirecting it to localhost (127.0.0.1).
 
 ## *App4 - Personal Website with Flask*
 Simple website with 2 web-pages, and CSS styling.
+
+## *App5 - Desktop Databse App with tkinter*
+Simple desktop app for basic sqlite3 operations like create table, insert, update and delete records.
