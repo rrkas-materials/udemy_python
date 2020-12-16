@@ -1,0 +1,40 @@
+$ pip3 install pandas_datareader
+
+candle stick chart:
+    line: low  -> high
+    box : open -> close
+
+$ pip install virtualenv
+$ python3 -m venv -p python3 virtual           (windows)
+$ python3 -m virtualenv -p python3 virtual     (linux)
+$ virtual/bin/pip3 install flask
+$ virtual/bin/pip3 install bokeh
+$ virtual/bin/pip3 install pandas
+$ virtual/bin/pip3 install pandas_datareader
+
+--------deploying to heroku server----------
+
+STEPS   Description
+    1   copy the "13 app8 - web based financial graph" directory and paste outside the git's scope
+    2   in the "code" directory of above pasted files, open terminal:
+        $ ../virtual/bin/pip3 install gunicorn
+        $ ../virtual/bin/pip3 freeze > requirements.txt
+        remove pkg-resources==0.0.0 from the file
+    3   $ touch Procfile            (no extension)
+        open Procfile and write:
+            web: gunicorn script:app
+    4   $ touch runtime.txt
+        open runtime and write:
+            python-3.6.12
+    5   $ heroku login
+        $ heroku apps
+        $ heroku create rrka2stockmarket
+        https://git.heroku.com/rrka2stockmarket.git
+        https://rrka2stockmarket.herokuapp.com/
+        $ git init
+        $ git add .
+        $ git commit -m "first commit"
+        $ heroku git:remote --app rrka2stockmarket
+        $ heroku info
+        $ git push heroku master
+        $ heroku open
