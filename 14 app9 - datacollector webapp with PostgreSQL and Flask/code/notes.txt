@@ -1,0 +1,43 @@
+steps
+1       frontend    html                    [X]
+2       frontend    css                     [X]
+3       backend     get data from form      [X]
+4       backend     connect to database     [ ]
+5       backend     calculate average       [ ]
+6       backend     send mail               [ ]
+7       deploy to heroku                    [ ]
+
+---------------------------------------------------
+
+$ python3 -m virtualenv -p python3 virtual
+$ ../virtual/bin/pip3 install flask
+$ source $(virtual env path)/bin/activate
+[source "/home/rohnak/PythonProjects/14 app9 - datacollector webapp with PostgreSQL and Flask/virtual/bin/activate"]
+(virtual) $ python3 main.py
+
+
+--------------install postgreSQL GUI-------------------
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
+https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu
+
+$ sudo apt-get install pgadmin4 pgadmin4-apache2 -y
+set the mail id and master password
+
+----------------setting up postgreSQL-------------------
+
+1   right click on databases -> create -> database
+2   give name -> save
+
+table creation code in python code
+
+(virtual) $ pip3 install psycopg2-binary
+(virtual) $ pip3 install Flask-SQLAlchemy
+
+----------------creating table------------------------
+
+To create the initial database, just import the db object from an interactive Python shell and run the SQLAlchemy.create_all() method to create the tables and database:
+
+>>> from main import db
+>>> db.create_all()
+
